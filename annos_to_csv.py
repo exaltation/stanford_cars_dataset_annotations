@@ -10,7 +10,7 @@ args = parser.parse_args(sys.argv[1:])
 
 mat_file = 'cars_{}_annos.mat'.format(args.phase)
 csv_file = 'cars_{}_annos.csv'.format(args.phase)
-images_dir = os.path.abspath(os.path.join( os.path.dirname(os.path.dirname(__file__)), 'cars_train' ))
+images_dir = os.path.abspath(os.path.join( os.path.dirname(os.path.dirname(__file__)), 'cars_{}'.format(args.phase) ))
 
 mat_data = loadmat(mat_file)
 annotations = mat_data['annotations'][0]
