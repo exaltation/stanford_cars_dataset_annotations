@@ -1,4 +1,5 @@
 import sys
+import os
 import argparse
 from scipy.io import loadmat
 
@@ -9,6 +10,7 @@ args = parser.parse_args(sys.argv[1:])
 
 mat_file = 'cars_{}_annos.mat'.format(args.phase)
 csv_file = 'cars_{}_annos.csv'.format(args.phase)
+images_dir = os.path.join( os.path.dirname(os.path.dirname(__file__)), 'cars_train' )
 
 mat_data = loadmat(mat_file)
 annotations = mat_data['annotations'][0]
@@ -19,4 +21,4 @@ with open(csv_file, mode='w') as csv_data:
         x2 = annotation[2][0][0]
         y2 = annotation[3][0][0]
         fname = annotation[-1][0]
-        csv_data.write("{},{},{},{},{},{}\n".format(fname,x1,y1,x2,y2,"car"))
+        csv_data.write("{},{},{},{},{},{}\n".format(os.path.join(images_dir, fname),x1,y1,x2,y2,"car"))
